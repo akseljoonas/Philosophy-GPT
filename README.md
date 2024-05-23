@@ -29,6 +29,7 @@ https://stevenabreu7.notion.site/NN-Programming-Tutorial-abe5dc24c9344f4aacaa37f
 
 [Optax](https://optax.readthedocs.io/en/latest/index.html) for model optimization
 
+[Trax](https://trax-ml.readthedocs.io/en/latest/trax.models.html#trax.models.transformer.Transformer) for already premade Transformer implementation.
 
 
 [Uva Introduction tutorial for JAX](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/JAX/tutorial2/Introduction_to_JAX.html)
