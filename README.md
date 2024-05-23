@@ -15,3 +15,5 @@ https://www.youtube.com/watch?v=kWLed8o5M2Y&t=561s
 ## For JAX
 
 Brightspace tutorials?
+
+Notion page of the TA
