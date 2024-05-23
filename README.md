@@ -24,8 +24,13 @@ https://stevenabreu7.notion.site/NN-Programming-Tutorial-abe5dc24c9344f4aacaa37f
 ### Notes on JAX:
 
 [Flax](https://flax.readthedocs.io/en/latest/index.html) for prebuilt blocks that we dont want to implement ourselves.
+
 [Optuna](https://optuna.org/) for hyperparameter tuning.
+
 [Optax](https://optax.readthedocs.io/en/latest/index.html) for model optimization
 
+
+
 [Uva Introduction tutorial for JAX](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/JAX/tutorial2/Introduction_to_JAX.html)
+
 [Uva DL Transformer implementation in JAX. ](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/JAX/tutorial6/Transformers_and_MHAttention.html)
