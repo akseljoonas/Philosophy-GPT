@@ -31,7 +31,14 @@ https://stevenabreu7.notion.site/NN-Programming-Tutorial-abe5dc24c9344f4aacaa37f
 
 [Trax](https://trax-ml.readthedocs.io/en/latest/trax.models.html#trax.models.transformer.Transformer) for already premade Transformer implementation.
 
-
 [Uva Introduction tutorial for JAX](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/JAX/tutorial2/Introduction_to_JAX.html)
 
 [Uva DL Transformer implementation in JAX. ](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/JAX/tutorial6/Transformers_and_MHAttention.html)
+
+## Papers to orientate ourselves:
+GPT-2 Paper:
+https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf
+
+Google Paper "Attention is all you need":
+https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
+
