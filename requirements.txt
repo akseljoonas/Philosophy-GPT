@@ -1,0 +1,5 @@
+jax[cpu]
+numpy
+pandas
+flax
+optax
