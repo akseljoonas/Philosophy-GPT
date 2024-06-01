@@ -3,3 +3,5 @@ numpy
 pandas
 flax
 optax
+notebook
+ipywidgets
