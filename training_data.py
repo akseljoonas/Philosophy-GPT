@@ -1,8 +1,12 @@
 # getting the original txt file
 def get_txt_file():
-    nietzsche_txt = open('/Users/mikaumana/Documents/PycharmProjects/NietzscheGPT/nietzsche.txt', 'r')
+    nietzsche_txt = open(
+        "/Users/mikaumana/Documents/PycharmProjects/NietzscheGPT/nietzsche.txt", "r"
+    )
     pre_nietzsche_data = nietzsche_txt.read()
     return pre_nietzsche_data
+
+
 def remove_char(pre_nietzsche_data):
     n_nietzsche_data = pre_nietzsche_data.replace("_", "")
     nietzsche_data = n_nietzsche_data.replace("$", "")
@@ -33,13 +37,12 @@ def get_info(nietzsche_data):
 
 
 def save_data(nietzsche_data):
-    with open('new_nietzsche.txt', 'w') as output:
+    with open("new_nietzsche.txt", "w") as output:
         output.write(nietzsche_data)
+
 
 if __name__ == "__main__":
     x = get_txt_file()
     y = remove_char(x)
     get_info(y)
     save_data(y)
-
-

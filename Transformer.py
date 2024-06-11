@@ -66,9 +66,7 @@ class BatchLoader:
         validation_data = data[n:]
         return training_data, validation_data
 
-    def get_batch(
-        self, key, batch_size, context_length, training: bool = True
-    ):
+    def get_batch(self, key, batch_size, context_length, training: bool = True):
         train_batches = []
         target_batches = []
 
@@ -107,7 +105,6 @@ class SingleAttentionHead(nn.Module):
         self.dropout = nn.Dropout(rate=0.2)
 
     def __call__(self, data, training):
-
         k = self.key(data)  # from embed_size to head_size (B,T,C)
         q = self.query(data)
         v = self.value(data)
@@ -194,9 +191,7 @@ class Block(nn.Module):
         self.multihead = MultiHeadAttention(
             head_num=self.head_num, embed_dim=self.embed_dim
         )
-        self.feedforward = FeedForward(
-            embed_dim=self.embed_dim, dim_mul=self.dim_mul
-        )
+        self.feedforward = FeedForward(embed_dim=self.embed_dim, dim_mul=self.dim_mul)
 
     def __call__(self, data, training: bool):
         x = data
@@ -226,9 +221,7 @@ class TransformerModel(nn.Module):
 
     def setup(self):
         self.token_embedding_table = nn.Embed(self.vocab_size, self.embed_dim)
-        self.position_embedding_table = nn.Embed(
-            self.context_length, self.embed_dim
-        )
+        self.position_embedding_table = nn.Embed(self.context_length, self.embed_dim)
         #########################
         self.blocks = CustomSequential(
             [
@@ -246,7 +239,6 @@ class TransformerModel(nn.Module):
         self.linear = nn.Dense(self.vocab_size, use_bias=False)
 
     def __call__(self, data, training: bool = True):
-
         _, context_length = data.shape
 
         token = self.token_embedding_table(data)
@@ -263,7 +255,6 @@ class TransformerModel(nn.Module):
         return final_data
 
     def generate(self, key, params, data, length):
-
         batch_size, _ = data.shape
 
         # Prepare jax.random.choice to operate on batches of data
@@ -271,7 +262,6 @@ class TransformerModel(nn.Module):
         batched_random_choice = jax.vmap(jax.random.choice)
 
         for _ in range(length):
-
             # One new random key for every new character
             key, subkey = jax.random.split(key)
 
@@ -283,9 +273,7 @@ class TransformerModel(nn.Module):
             data_to_use = data[:, -self.context_length :]
 
             # Forward pass through the network to get the predictions
-            logits = self.apply(
-                {"params": params}, data_to_use, training=False
-            )
+            logits = self.apply({"params": params}, data_to_use, training=False)
             logits = logits[:, -1, :]
             probabilities = jax.nn.softmax(logits)
 
@@ -310,7 +298,6 @@ def _train_step(state, batch, dropout_key):
     dropout_key, dropout_train_key = jax.random.split(dropout_key)
 
     def loss_fn(params):
-
         data, labels = batch
 
         # Same as model.apply
@@ -371,9 +358,7 @@ def train(state, num_epochs, dropout_key):
             eval_batch = (eval, eval_labels)
             eval_loss = _eval_step(state, eval_batch, training=False)
 
-            print(
-                f"Epoch {epoch}: Train loss {train_loss}, Eval loss {eval_loss}"
-            )
+            print(f"Epoch {epoch}: Train loss {train_loss}, Eval loss {eval_loss}")
 
     return state
 
@@ -410,9 +395,7 @@ if __name__ == "__main__":
     optimizer = optax.adamw(learning_rate=learning_rate)
 
     # Model init
-    data = jnp.ones(
-        (batch_size, context_length), dtype=jnp.int32
-    )  # Example shape
+    data = jnp.ones((batch_size, context_length), dtype=jnp.int32)  # Example shape
     labels = jnp.ones((batch_size, context_length), dtype=jnp.int32)
 
     model = TransformerModel(
@@ -438,9 +421,7 @@ if __name__ == "__main__":
         apply_fn=model.apply, params=params, key=dropout_key, tx=optimizer
     )
 
-    trained_model_state = train(
-        state=state, num_epochs=1000, dropout_key=dropout_key
-    )
+    trained_model_state = train(state=state, num_epochs=1000, dropout_key=dropout_key)
 
     # Generation
     key, subkey = jax.random.split(key, num=3)
