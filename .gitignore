@@ -4,3 +4,4 @@
 
 # Ignore .env files
 .env
+/checkpoints/

@@ -6,3 +6,5 @@ optax
 notebook
 ipywidgets
 tiktoken
+orbax-checkpoint
+matplotlib
