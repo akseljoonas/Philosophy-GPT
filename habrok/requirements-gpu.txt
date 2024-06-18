@@ -1,0 +1,11 @@
+jax[cuda12]
+numpy
+pandas
+flax
+optax
+notebook
+ipywidgets
+tiktoken
+orbax-checkpoint
+matplotlib
+tqdm
