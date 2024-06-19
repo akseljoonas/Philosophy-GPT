@@ -23,12 +23,17 @@ def generate(state, data, length, temperature):
 
 
 def open_data(folder_path="./dataset"):
+    def remove_char(pre_nietzsche_data):
+        n_nietzsche_data = pre_nietzsche_data.replace("_", "")
+        nietzsche_data = n_nietzsche_data.replace("$", "")
+        return nietzsche_data
     full_txt = ""
     for path in os.listdir(folder_path):
         if ".txt" in path:
             txt = open(os.path.join(folder_path, path), "r", encoding="utf-8").read()
+            txt = remove_char(txt)
             full_txt += txt
-    return txt
+    return full_txt
 
 
 def plot_loss_curves(train_losses, eval_losses, eval_interval=100):
