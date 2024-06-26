@@ -27,9 +27,10 @@ def open_data(folder_path="./dataset"):
         n_nietzsche_data = pre_nietzsche_data.replace("_", "")
         nietzsche_data = n_nietzsche_data.replace("$", "")
         return nietzsche_data
+
     full_txt = ""
     for path in os.listdir(folder_path):
-        if ".txt" in path:
+        if ".txt" in path and "niet" in path:
             txt = open(os.path.join(folder_path, path), "r", encoding="utf-8").read()
             txt = remove_char(txt)
             full_txt += txt
@@ -46,6 +47,7 @@ def plot_loss_curves(train_losses, eval_losses, eval_interval=100):
     plt.ylabel("Loss")
     plt.title("Training and Evaluation Loss Curves")
     plt.legend()
+    plt.savefig("/home1/s4790820/llm/Philosophy-GPT/habrok/loss_curves.png")
     plt.show()
 
 
@@ -121,8 +123,8 @@ class Tokenizer:
 
         if self.tokenizer_type == "base":
             self.vocab_size, self.all_characters = self.sort_characters(text)
-        elif self.tokenizer_type == "gpt-4o":
-            self.enc = tiktoken.encoding_for_model("gpt-4o")
+        elif self.tokenizer_type == "gpt-2":
+            self.enc = tiktoken.encoding_for_model("gpt-2")
             self.vocab_size = self.enc.n_vocab
 
     def get_vocab_size(self):
@@ -140,7 +142,7 @@ class Tokenizer:
             for c in text:
                 num = self.all_characters.index(c)
                 encoded_text.append(num)
-        elif self.tokenizer_type == "gpt-4o":
+        elif self.tokenizer_type == "gpt-2":
             encoded_text = self.enc.encode(text)
         return jnp.array(encoded_text)
 
@@ -152,7 +154,7 @@ class Tokenizer:
                 text.append(char)
             text = "".join([str(item) for item in text])
 
-        elif self.tokenizer_type == "gpt-4o":
+        elif self.tokenizer_type == "gpt-2":
             text = self.enc.decode(encoded_text)
 
         return text

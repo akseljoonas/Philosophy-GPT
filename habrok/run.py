@@ -1,3 +1,4 @@
+import csv
 import os
 
 import jax
@@ -132,6 +133,7 @@ def train(state, num_epochs, dropout_key):
     replicated_state = jax.device_put_replicated(state, jax.local_devices())
     train_losses = []
     eval_losses = []
+    save_list = []
     best_eval_loss = float("inf")
 
     for epoch in tqdm(range(num_epochs + 1)):
@@ -192,9 +194,21 @@ def train(state, num_epochs, dropout_key):
             # Appending losses
             train_losses.append(train_loss)
             eval_losses.append(eval_loss)
-
+            save_list.append({'train': train_loss, 'eval': eval_loss})
             print(f"Epoch {epoch}: Train loss {train_loss}, Eval loss {eval_loss}")
 
+    csv_file = "/home1/s4790820/llm/Philosophy-GPT/habrok/train_eval_loss.csv"
+
+    # Get the keys from the first dictionary as headers
+    headers = save_list[0].keys()
+
+    # Write the data to a CSV file
+    with open(csv_file, 'w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(save_list)
+
+    print(f"Data has been written to {csv_file}")
     return jax.device_get(replicated_state), train_losses, eval_losses
 
 

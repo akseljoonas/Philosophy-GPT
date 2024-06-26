@@ -2,14 +2,14 @@ import jax
 
 
 # Hyperparameters
-batch_size = 16
-context_length = 256
+batch_size = 8
+context_length = 1024
 train_test_split_size = 0.9
-embed_dim = 32
-n_heads = 8
+embed_dim = 768
+n_heads = 12
 mlp_dim_mul = 4  # between 2 and 8 according to UvA
-n_blocks = 6
-max_iters = 100
+n_blocks = 12
+max_iters = 1000
 learning_rate = 3e-4
 
 # Scheduler
@@ -24,7 +24,7 @@ temperature = 1
 
 # Checkpoints
 delete_checkpoints = True
-CHECKPOINT_PATH = "/Users/akseljoonas/Documents/Kool/NN/Final Project/checkpoints"
+CHECKPOINT_PATH = "/home1/s4790820/llm/Philosophy-GPT/habrok/checkpoints"
 
 # Parallelising
 devices = jax.local_devices()
