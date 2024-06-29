@@ -1,14 +1,14 @@
 import jax
 
 # Hyperparameters
-batch_size = 8
+batch_size = 16
 context_length = 1024
 train_test_split_size = 0.9
 embed_dim = 768
 n_heads = 12
 mlp_dim_mul = 4  # between 2 and 8 according to UvA
 n_blocks = 12
-max_iters = 1000
+max_iters = 5000
 learning_rate = 3e-4
 
 # Scheduler
@@ -20,9 +20,11 @@ peak_value = 0.15
 
 # Generation
 temperature = 1
+PROMPT = "The meaning of life is "
+print(f"Prompt: {PROMPT}")
 
 # Checkpoints
-delete_checkpoints = True
+delete_checkpoints = False
 CHECKPOINT_PATH = "/home1/s4790820/llm/Philosophy-GPT/habrok/checkpoints"
 DATA_PATH = "/home1/s4790820/llm/Philosophy-GPT/new_nietzsche.txt"
 

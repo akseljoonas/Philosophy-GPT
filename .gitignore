@@ -5,3 +5,4 @@
 # Ignore .env files
 .env
 /checkpoints/
+/saved_checkpoints/

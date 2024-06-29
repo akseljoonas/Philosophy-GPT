@@ -10,6 +10,7 @@ from flax.training import orbax_utils
 from hyperparams import (
     CHECKPOINT_PATH,
     DATA_PATH,
+    PROMPT,
     batch_size,
     context_length,
     delete_checkpoints,
@@ -44,7 +45,7 @@ key = jax.random.PRNGKey(42)
 
 # Open text
 text = open_data(DATA_PATH)
-print(f'text lenght {len(text)}')
+print(f"text lenght {len(text)}")
 
 
 # Tokenizer
@@ -137,7 +138,7 @@ def train(state, num_epochs, dropout_key):
     save_list = []
     best_eval_loss = float("inf")
 
-    for epoch in tqdm(range(num_epochs + 1)):
+    for epoch in tqdm(range(num_epochs + 1), miniters=100):
         # Get data
         train, train_labels = batch_loader.get_batch(
             batch_size, context_length, training=True
@@ -220,15 +221,12 @@ plot_loss_curves(train_losses, eval_losses)
 
 
 # Generation
-
-PROMPT = jnp.ones(
-    (jax.device_count(), 1, 1), dtype=jax.numpy.int32
-)  # (device_count, 1, 1)
-
+prompt_tokens = tokenizer.encode(PROMPT)
+prompt = jnp.array(prompt_tokens).reshape((jax.device_count(), 1, len(prompt_tokens)))
 generated_seq = generate(
     trained_model_state,
-    PROMPT,
-    50,
+    prompt,
+    100,
     temperature,
 )
 

@@ -13,7 +13,7 @@ from tqdm.auto import tqdm
 def generate(state, data, length, temperature):
     params = state.params
     key = jax.random.PRNGKey(42)
-    for _ in tqdm(range(length)):
+    for _ in tqdm(range(length), miniters=length / 10):
         key, subkey = jax.random.split(key)
         generate_keys = jax.random.split(subkey, jax.local_device_count())
         data = _generate_step(state, generate_keys, data, params, temperature)
