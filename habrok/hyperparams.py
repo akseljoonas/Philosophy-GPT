@@ -1,7 +1,7 @@
 import jax
 
 # Hyperparameters
-batch_size = 16
+batch_size = 4
 context_length = 1024
 train_test_split_size = 0.9
 embed_dim = 768

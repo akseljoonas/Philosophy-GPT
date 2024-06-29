@@ -222,7 +222,14 @@ plot_loss_curves(train_losses, eval_losses)
 
 # Generation
 prompt_tokens = tokenizer.encode(PROMPT)
-prompt = jnp.array(prompt_tokens).reshape((jax.device_count(), 1, len(prompt_tokens)))
+
+# Reshaping
+prompt = jnp.array(prompt_tokens).reshape((1, len(prompt_tokens)))
+prompt = jnp.repeat(prompt, jax.device_count(), axis=0).reshape(
+    (jax.device_count(), 1, len(prompt_tokens))
+)
+
+
 generated_seq = generate(
     trained_model_state,
     prompt,
@@ -231,5 +238,25 @@ generated_seq = generate(
 )
 
 decoded_text = tokenizer.decode(generated_seq[0])
+print("What is the meaning of life?\n")
+print(decoded_text)
 
+
+# Stat
+prompt_tokens = tokenizer.encode("a")
+
+prompt = jnp.array(prompt_tokens).reshape((1, len(prompt_tokens)))
+prompt = jnp.repeat(prompt, jax.device_count(), axis=0).reshape(
+    (jax.device_count(), 1, len(prompt_tokens))
+)
+
+
+generated_seq = generate(
+    trained_model_state,
+    prompt,
+    1000,
+    temperature,
+)
+
+print("1000 tokens:\n")
 print(decoded_text)
