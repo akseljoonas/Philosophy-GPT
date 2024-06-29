@@ -1,6 +1,5 @@
 import jax
 
-
 # Hyperparameters
 batch_size = 8
 context_length = 1024
@@ -25,9 +24,11 @@ temperature = 1
 # Checkpoints
 delete_checkpoints = True
 CHECKPOINT_PATH = "/home1/s4790820/llm/Philosophy-GPT/habrok/checkpoints"
+DATA_PATH = "/home1/s4790820/llm/Philosophy-GPT/new_nietzsche.txt"
 
 # Parallelising
 devices = jax.local_devices()
+print("\n\n\n\n")
 print(devices)
 
 # Check if hyperparams make sense

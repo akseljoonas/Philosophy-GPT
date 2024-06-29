@@ -1,4 +1,3 @@
-import os
 from functools import partial
 
 import jax
@@ -7,8 +6,8 @@ import matplotlib.pyplot as plt
 import optax
 import tiktoken
 from flax.training import train_state
-from tqdm.auto import tqdm
 from hyperparams import context_length
+from tqdm.auto import tqdm
 
 
 def generate(state, data, length, temperature):
@@ -22,18 +21,8 @@ def generate(state, data, length, temperature):
     return jax.device_get(data[0])
 
 
-def open_data(folder_path="./dataset"):
-    def remove_char(pre_nietzsche_data):
-        n_nietzsche_data = pre_nietzsche_data.replace("_", "")
-        nietzsche_data = n_nietzsche_data.replace("$", "")
-        return nietzsche_data
-
-    full_txt = ""
-    for path in os.listdir(folder_path):
-        if ".txt" in path and "niet" in path:
-            txt = open(os.path.join(folder_path, path), "r", encoding="utf-8").read()
-            txt = remove_char(txt)
-            full_txt += txt
+def open_data(folder_path="/home1/s4790820/llm/Philosophy-GPT/new_nietzsche.txt"):
+    full_txt = open(folder_path, "r", encoding="utf-8").read()
     return full_txt
 
 

@@ -9,6 +9,7 @@ import orbax.checkpoint as ocp
 from flax.training import orbax_utils
 from hyperparams import (
     CHECKPOINT_PATH,
+    DATA_PATH,
     batch_size,
     context_length,
     delete_checkpoints,
@@ -42,12 +43,12 @@ from utils import (
 key = jax.random.PRNGKey(42)
 
 # Open text
-text = open_data()
-len(text)
+text = open_data(DATA_PATH)
+print(f'text lenght {len(text)}')
 
 
 # Tokenizer
-tokenizer = Tokenizer(text=text, tokenizer_type="gpt-4o")
+tokenizer = Tokenizer(text=text, tokenizer_type="gpt-2")
 all_data = tokenizer.encode(text)
 print(tokenizer.get_vocab_size())
 
@@ -194,7 +195,7 @@ def train(state, num_epochs, dropout_key):
             # Appending losses
             train_losses.append(train_loss)
             eval_losses.append(eval_loss)
-            save_list.append({'train': train_loss, 'eval': eval_loss})
+            save_list.append({"train": train_loss, "eval": eval_loss})
             print(f"Epoch {epoch}: Train loss {train_loss}, Eval loss {eval_loss}")
 
     csv_file = "/home1/s4790820/llm/Philosophy-GPT/habrok/train_eval_loss.csv"
@@ -203,7 +204,7 @@ def train(state, num_epochs, dropout_key):
     headers = save_list[0].keys()
 
     # Write the data to a CSV file
-    with open(csv_file, 'w', newline='') as file:
+    with open(csv_file, "w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=headers)
         writer.writeheader()
         writer.writerows(save_list)

@@ -2,8 +2,8 @@
 
 #SBATCH --job-name=GPT_Wadeva
 #SBATCH --time=16:00:00
-#SBATCH --mem=4G
-#SBATCH --gpus-per-node=4
+#SBATCH --mem=16G
+#SBATCH --gpus-per-node=2
 #SBATCH --output=job-%j.log
 
 
