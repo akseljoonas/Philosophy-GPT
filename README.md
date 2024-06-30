@@ -1,44 +1,45 @@
-# Philosophy-GPT
-Resources to watch before next meeting:
+# Philosophy GPT
 
-### Andrej Karpathy full transformer tutorial.
-https://www.youtube.com/watch?v=kCc8FmEb1nY&t=583s
+This project, inspired by the works of Friedrich Nietzsche and GPT-2, implements a nano-scale generative decoder-only transformer in JAX which was trained on 2 a100 on a high-performance computing cluster @ RUG.
 
-### 3blue1brown visual explanation of Transformers
-https://youtu.be/wjZofJX0v4M?si=7N4QQLC91dXZyxX0
+## ✨ Highlights
 
-https://youtu.be/eMlx5fFNoYc?si=eymA7IqSqssoPaUI
+### Dataset
+Our dataset comprises the complete works of Nietzsche, consisting of 3,411,407 characters. After preprocessing, we refined the dataset to 3,396,780 characters, ensuring a rich textual corpus for our model and no unnecessary characters.
 
-### Good math intuition for Transformers
-https://www.youtube.com/watch?v=kWLed8o5M2Y&t=561s
+### Training and Optimization
+We leveraged the computational efficiency of JAX and Flax, with Just-In-Time (JIT) compilation and parallel computing with ```pmap``` on the RUG's supercomputer, Habrok.
 
+## 📈 Results
 
-## For JAX
+### Quantitative Analysis
+Our transformer model showed a stable decrease in both training and evaluation losses, outperforming the benchmark model significantly.
 
-Brightspace tutorials?
-https://brightspace.rug.nl/d2l/common/dialogs/quickLink/quickLink.d2l?ou=243041&type=lti&rcode=8AE7AF6F-0534-48B3-97C6-4FDC1563223B-63518&srcou=6606&launchFramed=1&framedName=Kaltura+Videos+%26+Classroom
+### Qualitative Analysis
+The benchmark model produced text like: 
+```
+"Misterel of is r Thin lfe n aneacoucereagencous t Mer ete.. aler lllorivede out effore id ivity the"
+```
+Whereas our transformer model generated:
+```
+"For that single the education.--It is always thus too fundamental necessity. Finally either in the good music. The art consequently the misleading, usually for the fish either. It is itism among the creatures than a lion is having become alone: his."
+```
+The improvement is evident in the coherent and essay-like structure of the output, demonstrating the model's ability to capture Nietzsche's stylistic essence.
 
-Notion page of the TA
-https://stevenabreu7.notion.site/NN-Programming-Tutorial-abe5dc24c9344f4aacaa37fa216262b1#9df8c1681c804be5addb5d69475eb46e
+## 🧠 The Ultimate Question
 
-### Notes on JAX:
+What is the meaning of life? Our model’s whimsical attempt to answer this eternal question:
+```
+"The meaning of life is With raise delay. The sting of their fellows artists might."
+```
 
-[Flax](https://flax.readthedocs.io/en/latest/index.html) for prebuilt blocks that we dont want to implement ourselves.
+## 📄 Report
+For a detailed account of our methodology, challenges, and insights, refer to our comprehensive [project report](./report.pdf).
 
-[Optuna](https://optuna.org/) for hyperparameter tuning.
+### 🧑‍🤝‍🧑 Team
+- Aksel Joonas Reedi
+- Mihkel Mariusz Jezierski 
+- Elisa Klunder
+- Mika Umaña
 
-[Optax](https://optax.readthedocs.io/en/latest/index.html) for model optimization
-
-[Trax](https://trax-ml.readthedocs.io/en/latest/trax.models.html#trax.models.transformer.Transformer) for already premade Transformer implementation.
-
-[Uva Introduction tutorial for JAX](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/JAX/tutorial2/Introduction_to_JAX.html)
-
-[Uva DL Transformer implementation in JAX. ](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/JAX/tutorial6/Transformers_and_MHAttention.html)
-
-## Papers to orientate ourselves:
-GPT-2 Paper:
-https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf
-
-Google Paper "Attention is all you need":
-https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
-
+*This project was developed as part of our bachelor's studies*

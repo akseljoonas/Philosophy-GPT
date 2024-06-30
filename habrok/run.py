@@ -15,18 +15,13 @@ from hyperparams import (
     context_length,
     delete_checkpoints,
     embed_dim,
-    init_value,
     learning_rate,
     max_iters,
     mlp_dim_mul,
     n_blocks,
     n_heads,
-    peak_value,
-    scheduler_decay_steps,
-    scheduler_warmup_steps,
     temperature,
     train_test_split_size,
-    use_scheduler,
 )
 from model import TransformerModel
 from tqdm.auto import tqdm
@@ -63,17 +58,7 @@ batch_loader = BatchLoader(
 train, targets = batch_loader.get_batch(batch_size, context_length, training=True)
 
 # Optimizer
-if use_scheduler:
-    scheduler = optax.warmup_cosine_decay_schedule(
-        init_value=init_value,
-        peak_value=peak_value,
-        warmup_steps=scheduler_warmup_steps,
-        decay_steps=scheduler_decay_steps,
-    )
-    optimizer = optax.adamw(scheduler)  # scheduler
-else:
-    optimizer = optax.adamw(learning_rate)
-
+optimizer = optax.adamw(learning_rate)
 
 # Model init
 data = jnp.ones((batch_size, context_length), dtype=jnp.int32)
@@ -240,23 +225,3 @@ generated_seq = generate(
 decoded_text = tokenizer.decode(generated_seq[0])
 print("What is the meaning of life?\n")
 print(decoded_text)
-
-
-# Stat
-# prompt_tokens = tokenizer.encode("a")
-
-# prompt = jnp.array(prompt_tokens).reshape((1, len(prompt_tokens)))
-# prompt = jnp.repeat(prompt, jax.device_count(), axis=0).reshape(
-#     (jax.device_count(), 1, len(prompt_tokens))
-# )
-
-
-# generated_seq = generate(
-#     trained_model_state,
-#     prompt,
-#     1000,
-#     temperature,
-# )
-
-# print("1000 tokens:\n")
-# print(decoded_text)
