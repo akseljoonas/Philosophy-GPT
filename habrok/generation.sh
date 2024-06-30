@@ -1,9 +1,10 @@
 #!/bin/bash
 
-#SBATCH --job-name=GPT_generation
+#SBATCH --job-name=GPT_gen
 #SBATCH --time=6:00:00
-#SBATCH --mem=128G
-#SBATCH --output=generation-%j.log
+#SBATCH --mem=124G
+#SBATCH --gpus-per-node=2
+#SBATCH --output=gen-%j.log
 
 
 module purge
