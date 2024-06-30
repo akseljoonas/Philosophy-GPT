@@ -24,7 +24,7 @@ PROMPT = "The meaning of life is "
 print(f"Prompt: {PROMPT}")
 
 # Checkpoints
-delete_checkpoints = False
+delete_checkpoints = True
 CHECKPOINT_PATH = "/home1/s4790820/llm/Philosophy-GPT/habrok/checkpoints"
 DATA_PATH = "/home1/s4790820/llm/Philosophy-GPT/new_nietzsche.txt"
 

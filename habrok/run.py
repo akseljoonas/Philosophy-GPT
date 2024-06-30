@@ -49,11 +49,11 @@ print(f"text lenght {len(text)}")
 
 
 # Tokenizer
-tokenizer = Tokenizer(text=text, tokenizer_type="gpt-2")
+tokenizer = Tokenizer(text=text, tokenizer_type="base")
 all_data = tokenizer.encode(text)
 print(tokenizer.get_vocab_size())
 
-# print(tokenizer.decode(all_data[:100]))
+print(tokenizer.decode(all_data[:100]))
 
 
 # Batch loader
@@ -243,20 +243,20 @@ print(decoded_text)
 
 
 # Stat
-prompt_tokens = tokenizer.encode("a")
+# prompt_tokens = tokenizer.encode("a")
 
-prompt = jnp.array(prompt_tokens).reshape((1, len(prompt_tokens)))
-prompt = jnp.repeat(prompt, jax.device_count(), axis=0).reshape(
-    (jax.device_count(), 1, len(prompt_tokens))
-)
+# prompt = jnp.array(prompt_tokens).reshape((1, len(prompt_tokens)))
+# prompt = jnp.repeat(prompt, jax.device_count(), axis=0).reshape(
+#     (jax.device_count(), 1, len(prompt_tokens))
+# )
 
 
-generated_seq = generate(
-    trained_model_state,
-    prompt,
-    1000,
-    temperature,
-)
+# generated_seq = generate(
+#     trained_model_state,
+#     prompt,
+#     1000,
+#     temperature,
+# )
 
-print("1000 tokens:\n")
-print(decoded_text)
+# print("1000 tokens:\n")
+# print(decoded_text)
