@@ -22,7 +22,7 @@ The benchmark model produced text like:
 ```
 Whereas our transformer model generated:
 ```
-"For that single the education.--It is always thus too fundamental necessity. Finally either in the good music. The art consequently the misleading, usually for the fish either. It is itism among the creatures than a lion is having become alone: his."
+"Education is a fundamental necessity, always. It is similar with good music and art—they are often misunderstood or misleading, much like fish in a vast sea. Among creatures, a lion stands apart, embodying a solitude that defines its essence."
 ```
 The improvement is evident in the coherent and essay-like structure of the output, demonstrating the model's ability to capture Nietzsche's stylistic essence.
 
@@ -30,7 +30,7 @@ The improvement is evident in the coherent and essay-like structure of the outpu
 
 What is the meaning of life? Our model’s whimsical attempt to answer this eternal question:
 ```
-"The meaning of life is With raise delay. The sting of their fellows artists might."
+"The meaning of life is with rising delays, like the sting of their fellow artists linger."
 ```
 
 ## 📄 Report
